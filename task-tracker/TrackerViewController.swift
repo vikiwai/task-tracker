@@ -12,6 +12,16 @@ class TrackerViewController: UITableViewController {
     
     var taskList: TaskList
     
+    @IBAction func addNewTask(_ sender: Any) {
+        let newRowIndex = taskList.todo.count
+        let _ = taskList.newToDo()
+        
+        let indexPath = IndexPath(row: newRowIndex, section: 0)
+        let indexPaths = [indexPath]
+        
+        tableView.insertRows(at: indexPaths, with: .automatic)
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         taskList = TaskList()
         
@@ -53,9 +63,9 @@ class TrackerViewController: UITableViewController {
     
     func configureMarker(for cell: UITableViewCell, with item: Task) {
         if item.checked {
-            cell.accessoryType = .none
-        } else {
             cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .none
         }
         
         item.switchCheckStatus()

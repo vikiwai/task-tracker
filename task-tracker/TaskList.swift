@@ -18,4 +18,13 @@ class TaskList {
         
         todo.append(item)
     }
+    
+    func newToDo() -> Task {
+        let item = Task()
+        item.headline = "New"
+        
+        todo.append(item)
+        
+        return item
+    }
 }
