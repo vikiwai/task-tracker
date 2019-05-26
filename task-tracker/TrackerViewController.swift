@@ -9,7 +9,16 @@
 import UIKit
 
 class TrackerViewController: UITableViewController {
-
+    
+    var row0Item: Task
+    
+    required init?(coder aDecoder: NSCoder) {
+        row0Item = Task()
+        row0Item.headline = "Test"
+        
+        super.init(coder: aDecoder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -22,7 +31,7 @@ class TrackerViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TrackerItem", for: indexPath)
         
         if let label = cell.viewWithTag(1) as? UILabel {
-            label.text = "Test"
+            label.text = row0Item.headline
         }
         
         return cell
@@ -30,11 +39,13 @@ class TrackerViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) {
-            if cell.accessoryType == .none {
+            if !row0Item.checked {
                 cell.accessoryType = .checkmark
             } else {
                 cell.accessoryType = .none
             }
+            
+            row0Item.checked = !row0Item.checked
             
             tableView.deselectRow(at: indexPath, animated: true)
         }
