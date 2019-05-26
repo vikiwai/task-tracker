@@ -10,11 +10,10 @@ import UIKit
 
 class TrackerViewController: UITableViewController {
     
-    var row0Item: Task
+    var taskList: TaskList
     
     required init?(coder aDecoder: NSCoder) {
-        row0Item = Task()
-        row0Item.headline = "Test"
+        taskList = TaskList()
         
         super.init(coder: aDecoder)
     }
@@ -24,32 +23,42 @@ class TrackerViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return taskList.todo.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TrackerItem", for: indexPath)
+        let item = taskList.todo[indexPath.row]
         
-        if let label = cell.viewWithTag(1) as? UILabel {
-            label.text = row0Item.headline
-        }
+        configureHeadlineText(for: cell, with: item)
+        configureMarker(for: cell, with: item)
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) {
-            if !row0Item.checked {
-                cell.accessoryType = .checkmark
-            } else {
-                cell.accessoryType = .none
-            }
-            
-            row0Item.checked = !row0Item.checked
+            let item = taskList.todo[indexPath.row]
+            configureMarker(for: cell, with: item)
             
             tableView.deselectRow(at: indexPath, animated: true)
         }
     }
 
+    func configureHeadlineText(for cell: UITableViewCell, with item: Task) {
+        if let label = cell.viewWithTag(1) as? UILabel {
+            label.text = item.headline
+        }
+    }
+    
+    func configureMarker(for cell: UITableViewCell, with item: Task) {
+        if item.checked {
+            cell.accessoryType = .none
+        } else {
+            cell.accessoryType = .checkmark
+        }
+        
+        item.switchCheckStatus()
+    }
 }
 

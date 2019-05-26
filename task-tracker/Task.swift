@@ -9,6 +9,11 @@
 import Foundation
 
 class Task {
+    
     var headline: String = ""
     var checked: Bool = false
+    
+    func switchCheckStatus() {
+        checked = !checked
+    }
 }
