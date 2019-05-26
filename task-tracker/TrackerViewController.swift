@@ -55,6 +55,13 @@ class TrackerViewController: UITableViewController {
         }
     }
 
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        taskList.todo.remove(at: indexPath.row)
+        
+        let indexPaths = [indexPath]
+        
+        tableView.deleteRows(at: indexPaths, with: .automatic)
+    }
     func configureHeadlineText(for cell: UITableViewCell, with item: Task) {
         if let label = cell.viewWithTag(1) as? UILabel {
             label.text = item.headline
