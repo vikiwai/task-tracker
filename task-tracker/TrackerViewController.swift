@@ -30,27 +30,36 @@ class TrackerViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.leftBarButtonItem = editButtonItem
     }
 
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: true)
+        tableView.setEditing(tableView.isEditing, animated: true)
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return taskList.todo.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TrackerItem", for: indexPath)
-        let item = taskList.todo[indexPath.row]
+        let task = taskList.todo[indexPath.row]
         
-        configureHeadlineText(for: cell, with: item)
-        configureMarker(for: cell, with: item)
+        configureHeadlineText(for: cell, with: task)
+        configureMarker(for: cell, with: task)
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) {
-            let item = taskList.todo[indexPath.row]
-            configureMarker(for: cell, with: item)
+            let task = taskList.todo[indexPath.row]
+            task.switchCheckStatus()
             
+            configureMarker(for: cell, with: task)
             tableView.deselectRow(at: indexPath, animated: true)
         }
     }
@@ -61,6 +70,11 @@ class TrackerViewController: UITableViewController {
         let indexPaths = [indexPath]
         
         tableView.deleteRows(at: indexPaths, with: .automatic)
+    }
+    
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        taskList.move(task: taskList.todo[sourceIndexPath.row], to: destinationIndexPath.row)
+        tableView.reloadData()
     }
     
     func configureHeadlineText(for cell: UITableViewCell, with task: Task) {
@@ -79,8 +93,6 @@ class TrackerViewController: UITableViewController {
         } else {
             checkmarkCell.checkmarkImage.isHidden = true
         }
-        
-        task.switchCheckStatus()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -92,8 +104,8 @@ class TrackerViewController: UITableViewController {
         } else if segue.identifier == "EditTaskSegue" {
             if let taskDetailViewController = segue.destination as? TaskDetailViewController {
                 if let cell = sender as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) {
-                    let item = taskList.todo[indexPath.row]
-                    taskDetailViewController.taskToEdit = item
+                    let task = taskList.todo[indexPath.row]
+                    taskDetailViewController.taskToEdit = task
                     taskDetailViewController.delegate = self
                 }
             }
