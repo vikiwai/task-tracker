@@ -19,23 +19,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="TrackerItem" id="Nyo-pF-IDe">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="TrackerItem" id="Nyo-pF-IDe">
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nyo-pF-IDe" id="9DJ-mL-0tj">
-                                    <rect key="frame" x="0.0" y="0.0" width="280" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="252" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k12-Ai-0W9">
-                                            <rect key="frame" x="20" y="11" width="240" height="21.5"/>
+                                            <rect key="frame" x="47" y="11" width="42" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Very-Basic-Checkmark-icon" translatesAutoresizingMaskIntoConstraints="NO" id="uub-Dd-JZR">
+                                            <rect key="frame" x="10" y="7" width="27" height="26"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="k12-Ai-0W9" secondAttribute="trailing" constant="20" symbolic="YES" id="8g2-dO-P3z"/>
-                                        <constraint firstItem="k12-Ai-0W9" firstAttribute="leading" secondItem="9DJ-mL-0tj" secondAttribute="leading" constant="20" symbolic="YES" id="C1I-9I-Yza"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="k12-Ai-0W9" secondAttribute="trailing" constant="20" symbolic="YES" id="8g2-dO-P3z"/>
+                                        <constraint firstItem="k12-Ai-0W9" firstAttribute="leading" secondItem="9DJ-mL-0tj" secondAttribute="leading" constant="47" id="C1I-9I-Yza"/>
                                         <constraint firstAttribute="bottom" secondItem="k12-Ai-0W9" secondAttribute="bottom" priority="750" constant="11" id="MWX-ch-8n3"/>
                                         <constraint firstItem="k12-Ai-0W9" firstAttribute="top" secondItem="9DJ-mL-0tj" secondAttribute="top" priority="750" constant="11" id="wem-v5-PLV"/>
                                     </constraints>
@@ -58,7 +62,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fwl-VS-9Ic" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="896" y="112"/>
+            <point key="canvasLocation" x="894.375" y="111.97183098591549"/>
         </scene>
         <!--New Task Table View Controller-->
         <scene sceneID="oSH-1o-pab">
@@ -214,4 +218,7 @@
             <point key="canvasLocation" x="76.875" y="111.97183098591549"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Very-Basic-Checkmark-icon" width="256" height="256"/>
+    </resources>
 </document>
