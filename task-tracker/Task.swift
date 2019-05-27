@@ -10,7 +10,7 @@ import Foundation
 
 class Task: NSObject {
     
-    var headline: String = ""
+    @objc var headline: String = ""
     var checked: Bool = false
     
     func switchCheckStatus() {

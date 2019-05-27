@@ -11,6 +11,7 @@ import UIKit
 class TrackerViewController: UITableViewController {
     
     var taskList: TaskList
+    var tableData: Array<Array<Task?>?>!
     
     @IBAction func addNewTask(_ sender: Any) {
         let newRowIndex = taskList.todo.count
@@ -50,6 +51,23 @@ class TrackerViewController: UITableViewController {
         navigationItem.leftBarButtonItem = editButtonItem
         
         tableView.allowsMultipleSelectionDuringEditing = true
+        
+        let sectionTitleCount = UILocalizedIndexedCollation().sectionTitles.count
+        var allSections = Array<Array<Task?>?>(repeatElement(nil, count: sectionTitleCount))
+        var sectionNumber = 0
+        let collation = UILocalizedIndexedCollation.current()
+        
+        for task in taskList.todo {
+            sectionNumber = collation.section(for: task, collationStringSelector: #selector(getter:Task.headline))
+            
+            if allSections[sectionNumber] == nil {
+                allSections[sectionNumber] = Array<Task?>()
+            }
+            
+            allSections[sectionNumber]!.append(task)
+        }
+        
+        tableData = allSections
     }
 
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -58,15 +76,18 @@ class TrackerViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return taskList.todo.count
+        return tableData[section] == nil ? 0 : tableData[section]!.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TrackerItem", for: indexPath)
-        let task = taskList.todo[indexPath.row]
+        //let task = taskList.todo[indexPath.row]
+        if let task = tableData[indexPath.section]?[indexPath.row] {
+            configureHeadlineText(for: cell, with: task)
+            configureMarker(for: cell, with: task)
+        }
         
-        configureHeadlineText(for: cell, with: task)
-        configureMarker(for: cell, with: task)
+        
         
         return cell
     }
@@ -131,6 +152,22 @@ class TrackerViewController: UITableViewController {
                 }
             }
         }
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return tableData.count
+    }
+    
+    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        return UILocalizedIndexedCollation.current().sectionTitles
+    }
+    
+    override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+        return UILocalizedIndexedCollation.current().section(forSectionIndexTitle: index)
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return UILocalizedIndexedCollation.current().sectionTitles[section]
     }
 }
 
