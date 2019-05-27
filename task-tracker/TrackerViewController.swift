@@ -84,16 +84,16 @@ class TrackerViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddTaskSegue" {
-            if let addTaskViewController = segue.destination as? TaskDetailViewController {
-                addTaskViewController.delegate = self
-                addTaskViewController.taskList = taskList
+            if let taskDetailViewController = segue.destination as? TaskDetailViewController {
+                taskDetailViewController.delegate = self
+                taskDetailViewController.taskList = taskList
             }
         } else if segue.identifier == "EditTaskSegue" {
-            if let addTaskViewController = segue.destination as? TaskDetailViewController {
+            if let taskDetailViewController = segue.destination as? TaskDetailViewController {
                 if let cell = sender as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) {
                     let item = taskList.todo[indexPath.row]
-                    addTaskViewController.taskToEdit = item
-                    addTaskViewController.delegate = self
+                    taskDetailViewController.taskToEdit = item
+                    taskDetailViewController.delegate = self
                 }
             }
         }
@@ -102,7 +102,7 @@ class TrackerViewController: UITableViewController {
 
 extension TrackerViewController: TaskDetailViewControllerDelegate {
     
-    func addTaskViewController(_ controller: TaskDetailViewController, didFinishAdding task: Task) {
+    func taskDetailViewController(_ controller: TaskDetailViewController, didFinishAdding task: Task) {
         navigationController?.popViewController(animated: true)
         
         let rowIndex = taskList.todo.count - 1
@@ -112,7 +112,7 @@ extension TrackerViewController: TaskDetailViewControllerDelegate {
         tableView.insertRows(at: indexPaths, with: .automatic)
     }
     
-    func addTaskViewController(_ controller: TaskDetailViewController, didFinishEditing task: Task) {
+    func taskDetailViewController(_ controller: TaskDetailViewController, didFinishEditing task: Task) {
         if let index = taskList.todo.firstIndex(of: task) {
             let indexPath = IndexPath(row: index, section: 0)
             if let cell = tableView.cellForRow(at: indexPath) {
