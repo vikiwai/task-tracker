@@ -67,10 +67,10 @@
             </objects>
             <point key="canvasLocation" x="894.375" y="111.97183098591549"/>
         </scene>
-        <!--New Task Table View Controller-->
+        <!--Task Detail View Controller-->
         <scene sceneID="oSH-1o-pab">
             <objects>
-                <viewController id="82h-Xd-RrQ" customClass="NewTaskTableViewController" customModule="task_tracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="82h-Xd-RrQ" customClass="TaskDetailViewController" customModule="task_tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IxP-Jr-3wU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
