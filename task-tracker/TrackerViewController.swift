@@ -77,5 +77,27 @@ class TrackerViewController: UITableViewController {
         
         item.switchCheckStatus()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AddTaskSegue" {
+            if let addTaskViewController = segue.destination as? NewTaskTableViewController {
+                addTaskViewController.delegate = self
+            }
+        }
+    }
+}
+
+extension TrackerViewController: AddTaskViewControllerDelegate {
+    
+    func addTaskViewController(_ controller: NewTaskTableViewController, didFinishAdding task: Task) {
+        navigationController?.popViewController(animated: true)
+        
+        let rowIndex = taskList.todo.count
+        taskList.todo.append(task)
+        let indexPath = IndexPath(row: rowIndex, section: 0)
+        let indexPaths = [indexPath]
+        
+        tableView.insertRows(at: indexPaths, with: .automatic)
+    }
 }
 

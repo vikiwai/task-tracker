@@ -8,8 +8,14 @@
 
 import UIKit
 
+protocol AddTaskViewControllerDelegate: class {
+    func addTaskViewController(_ controller: NewTaskTableViewController, didFinishAdding task: Task)
+}
+
 class NewTaskTableViewController: UIViewController {
 
+    weak var delegate: AddTaskViewControllerDelegate?
+    
     @IBOutlet weak var taskHeadline: UITextField!
     @IBOutlet weak var taskData: UITextField!
     @IBOutlet weak var taskPriority: UITextField!
@@ -26,6 +32,13 @@ class NewTaskTableViewController: UIViewController {
             self.present(alertController, animated: true, completion: nil)
         } else {
             navigationController?.popViewController(animated: true)
+            
+            let task = Task()
+            if let taskHeadlineField = taskHeadline.text {
+                task.headline = taskHeadlineField
+            }
+            task.checked = false
+            delegate?.addTaskViewController(self, didFinishAdding: task)
         }
     }
     
