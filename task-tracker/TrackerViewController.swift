@@ -69,10 +69,14 @@ class TrackerViewController: UITableViewController {
     }
     
     func configureMarker(for cell: UITableViewCell, with item: Task) {
+        guard let checkmark = cell.viewWithTag(2) as? UIImageView else {
+            return
+        }
+        
         if item.checked {
-            cell.accessoryType = .checkmark
+            checkmark.isHidden = false
         } else {
-            cell.accessoryType = .none
+            checkmark.isHidden = true
         }
         
         item.switchCheckStatus()
