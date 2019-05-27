@@ -57,11 +57,18 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Task Tracker" id="qQe-QV-jEc">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="NNa-Ld-zFk">
-                            <connections>
-                                <segue destination="82h-Xd-RrQ" kind="show" identifier="AddTaskSegue" id="7Vp-Cj-WHw"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="NNa-Ld-zFk">
+                                <connections>
+                                    <segue destination="82h-Xd-RrQ" kind="show" identifier="AddTaskSegue" id="7Vp-Cj-WHw"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Delete" id="JKD-jR-Kkt">
+                                <connections>
+                                    <action selector="deleteTasks:" destination="ABs-Ce-Ts0" id="TfD-jx-6lG"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>

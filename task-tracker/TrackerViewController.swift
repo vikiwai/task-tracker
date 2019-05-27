@@ -22,6 +22,21 @@ class TrackerViewController: UITableViewController {
         tableView.insertRows(at: indexPaths, with: .automatic)
     }
     
+    @IBAction func deleteTasks(_ sender: Any) {
+        if let selectedRows = tableView.indexPathsForSelectedRows {
+            var selectedTasks: Array<Task> = []
+            for indexPath in selectedRows {
+                selectedTasks.append(taskList.todo[indexPath.row])
+            }
+            
+            taskList.remove(tasks: selectedTasks)
+            
+            tableView.beginUpdates()
+            tableView.deleteRows(at: selectedRows, with: .automatic)
+            tableView.endUpdates()
+        }
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         taskList = TaskList()
         
@@ -33,6 +48,8 @@ class TrackerViewController: UITableViewController {
         
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.leftBarButtonItem = editButtonItem
+        
+        tableView.allowsMultipleSelectionDuringEditing = true
     }
 
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -55,6 +72,10 @@ class TrackerViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView.isEditing {
+            return
+        }
+        
         if let cell = tableView.cellForRow(at: indexPath) {
             let task = taskList.todo[indexPath.row]
             task.switchCheckStatus()

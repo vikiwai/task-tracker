@@ -36,4 +36,12 @@ class TaskList {
         todo.remove(at: currentIndex)
         todo.insert(task, at: index)
     }
+    
+    func remove(tasks: [Task]) {
+        for task in tasks {
+            if let index = todo.firstIndex(of: task) {
+                todo.remove(at: index)
+            }
+        }
+    }
 }
