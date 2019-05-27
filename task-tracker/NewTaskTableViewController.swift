@@ -15,6 +15,8 @@ protocol AddTaskViewControllerDelegate: class {
 class NewTaskTableViewController: UIViewController {
 
     weak var delegate: AddTaskViewControllerDelegate?
+    weak var taskList: TaskList?
+    weak var taskToEdit: Task?
     
     @IBOutlet weak var taskHeadline: UITextField!
     @IBOutlet weak var taskData: UITextField!
@@ -44,6 +46,11 @@ class NewTaskTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let task = taskToEdit {
+            title = "Edit Task"
+            taskHeadline.text! = task.headline
+        }
         
         taskHeadline.delegate = self
         taskData.delegate = self

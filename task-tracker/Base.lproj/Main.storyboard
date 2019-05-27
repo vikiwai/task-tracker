@@ -44,6 +44,9 @@
                                         <constraint firstItem="k12-Ai-0W9" firstAttribute="top" secondItem="9DJ-mL-0tj" secondAttribute="top" priority="750" constant="11" id="wem-v5-PLV"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="82h-Xd-RrQ" kind="show" identifier="EditTaskSegue" trigger="accessoryAction" id="dEg-5o-ztd"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -221,4 +224,7 @@
     <resources>
         <image name="Very-Basic-Checkmark-icon" width="256" height="256"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="dEg-5o-ztd"/>
+    </inferredMetricsTieBreakers>
 </document>

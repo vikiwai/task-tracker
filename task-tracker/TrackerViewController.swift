@@ -86,6 +86,14 @@ class TrackerViewController: UITableViewController {
         if segue.identifier == "AddTaskSegue" {
             if let addTaskViewController = segue.destination as? NewTaskTableViewController {
                 addTaskViewController.delegate = self
+                addTaskViewController.taskList = taskList
+            }
+        } else if segue.identifier == "EditTaskSegue" {
+            if let addTaskViewController = segue.destination as? NewTaskTableViewController {
+                if let cell = sender as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) {
+                    let item = taskList.todo[indexPath.row]
+                    addTaskViewController.taskToEdit = item
+                }
             }
         }
     }
