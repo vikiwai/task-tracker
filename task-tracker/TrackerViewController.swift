@@ -93,6 +93,7 @@ class TrackerViewController: UITableViewController {
                 if let cell = sender as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) {
                     let item = taskList.todo[indexPath.row]
                     addTaskViewController.taskToEdit = item
+                    addTaskViewController.delegate = self
                 }
             }
         }
@@ -104,12 +105,22 @@ extension TrackerViewController: AddTaskViewControllerDelegate {
     func addTaskViewController(_ controller: NewTaskTableViewController, didFinishAdding task: Task) {
         navigationController?.popViewController(animated: true)
         
-        let rowIndex = taskList.todo.count
-        taskList.todo.append(task)
+        let rowIndex = taskList.todo.count - 1
         let indexPath = IndexPath(row: rowIndex, section: 0)
         let indexPaths = [indexPath]
         
         tableView.insertRows(at: indexPaths, with: .automatic)
+    }
+    
+    func addTaskViewController(_ controller: NewTaskTableViewController, didFinishEditing task: Task) {
+        if let index = taskList.todo.firstIndex(of: task) {
+            let indexPath = IndexPath(row: index, section: 0)
+            if let cell = tableView.cellForRow(at: indexPath) {
+                configureHeadlineText(for: cell, with: task)
+            }
+        }
+        
+        navigationController?.popViewController(animated: true)
     }
 }
 

@@ -10,6 +10,7 @@ import UIKit
 
 protocol AddTaskViewControllerDelegate: class {
     func addTaskViewController(_ controller: NewTaskTableViewController, didFinishAdding task: Task)
+    func addTaskViewController(_ controller: NewTaskTableViewController, didFinishEditing task: Task)
 }
 
 class NewTaskTableViewController: UIViewController {
@@ -33,14 +34,21 @@ class NewTaskTableViewController: UIViewController {
             
             self.present(alertController, animated: true, completion: nil)
         } else {
-            navigationController?.popViewController(animated: true)
-            
-            let task = Task()
-            if let taskHeadlineField = taskHeadline.text {
-                task.headline = taskHeadlineField
+            if let task = taskToEdit, let headline = taskHeadline.text {
+                task.headline = headline
+                
+                delegate?.addTaskViewController(self, didFinishEditing: task)
+            } else {
+                if let task = taskList?.newToDo() {
+                    if let taskHeadlineField = taskHeadline.text {
+                        task.headline = taskHeadlineField
+                    }
+                    
+                    task.checked = false
+                    
+                    delegate?.addTaskViewController(self, didFinishAdding: task)
+                }
             }
-            task.checked = false
-            delegate?.addTaskViewController(self, didFinishAdding: task)
         }
     }
     
@@ -50,6 +58,8 @@ class NewTaskTableViewController: UIViewController {
         if let task = taskToEdit {
             title = "Edit Task"
             taskHeadline.text! = task.headline
+        } else {
+            title = "Add Task"
         }
         
         taskHeadline.delegate = self

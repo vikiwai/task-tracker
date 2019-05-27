@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Task {
+class Task: NSObject {
     
     var headline: String = ""
     var checked: Bool = false
