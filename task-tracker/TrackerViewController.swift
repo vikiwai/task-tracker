@@ -62,24 +62,25 @@ class TrackerViewController: UITableViewController {
         
         tableView.deleteRows(at: indexPaths, with: .automatic)
     }
-    func configureHeadlineText(for cell: UITableViewCell, with item: Task) {
-        if let label = cell.viewWithTag(1) as? UILabel {
-            label.text = item.headline
+    
+    func configureHeadlineText(for cell: UITableViewCell, with task: Task) {
+        if let checkmarkCell = cell as? TrackerTableViewCell {
+            checkmarkCell.headlineLabel.text = task.headline
         }
     }
     
-    func configureMarker(for cell: UITableViewCell, with item: Task) {
-        guard let checkmark = cell.viewWithTag(2) as? UIImageView else {
+    func configureMarker(for cell: UITableViewCell, with task: Task) {
+        guard let checkmarkCell = cell as? TrackerTableViewCell else {
             return
         }
         
-        if item.checked {
-            checkmark.isHidden = false
+        if task.checked {
+            checkmarkCell.checkmarkImage.isHidden = false
         } else {
-            checkmark.isHidden = true
+            checkmarkCell.checkmarkImage.isHidden = true
         }
         
-        item.switchCheckStatus()
+        task.switchCheckStatus()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

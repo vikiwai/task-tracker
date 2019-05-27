@@ -27,4 +27,13 @@ class TaskList {
         
         return item
     }
+    
+    func move(task: Task, to index: Int) {
+        guard let currentIndex = todo.firstIndex(of: task) else {
+            return
+        }
+        
+        todo.remove(at: currentIndex)
+        todo.insert(task, at: index)
+    }
 }

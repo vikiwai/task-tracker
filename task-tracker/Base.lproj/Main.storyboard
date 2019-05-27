@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="TrackerItem" id="Nyo-pF-IDe">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="TrackerItem" id="Nyo-pF-IDe" customClass="TrackerTableViewCell" customModule="task_tracker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nyo-pF-IDe" id="9DJ-mL-0tj">
@@ -45,6 +45,8 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="checkmarkImage" destination="uub-Dd-JZR" id="0oX-o1-FeL"/>
+                                    <outlet property="headlineLabel" destination="k12-Ai-0W9" id="SN7-Eo-Tmf"/>
                                     <segue destination="82h-Xd-RrQ" kind="show" identifier="EditTaskSegue" trigger="accessoryAction" id="dEg-5o-ztd"/>
                                 </connections>
                             </tableViewCell>
