@@ -112,8 +112,15 @@ class TrackerViewController: UITableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        //taskList.move(task: taskList.todo[sourceIndexPath.row], to: destinationIndexPath.row)
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath,
+                                                      to destinationIndexPath: IndexPath) {
+        if let sourcePriority = priorityForSectionIndex(sourceIndexPath.section),
+           let destinationPriority = priorityForSectionIndex(destinationIndexPath.section) {
+            let task = taskList.todo(for: sourcePriority)[sourceIndexPath.row]
+            taskList.move(task: task, from: sourcePriority, at: sourceIndexPath.row,
+                                      to: destinationPriority, at: destinationIndexPath.row)
+        }
+        
         tableView.reloadData()
     }
     

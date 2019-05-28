@@ -45,16 +45,32 @@ class TaskList {
         return task
     }
     
-    func addTask(_ task: Task, for priority: Priority) {
+    func addTask(_ task: Task, for priority: Priority, at index: Int = -1) {
         switch priority {
         case .high:
-            return highPriorityTasks.append(task)
+            if index < 0 {
+                highPriorityTasks.append(task)
+            } else {
+                highPriorityTasks.insert(task, at: index)
+            }
         case .medium:
-            return mediumPriorityTasks.append(task)
+            if index < 0 {
+                mediumPriorityTasks.append(task)
+            } else {
+                mediumPriorityTasks.insert(task, at: index)
+            }
         case .low:
-            return lowPriorityTasks.append(task)
+            if index < 0 {
+                lowPriorityTasks.append(task)
+            } else {
+                lowPriorityTasks.insert(task, at: index)
+            }
         case .absence:
-            return withoutPriorityTasks.append(task)
+            if index < 0 {
+                withoutPriorityTasks.append(task)
+            } else {
+                withoutPriorityTasks.insert(task, at: index)
+            }
         }
     }
     
@@ -71,13 +87,10 @@ class TaskList {
         }
     }
     
-    func move(task: Task, to index: Int) {
-//        guard let currentIndex = todo.firstIndex(of: task) else {
-//            return
-//        }
-//
-//        todo.remove(at: currentIndex)
-//        todo.insert(task, at: index)
+    func move(task: Task, from sourcePriority: Priority, at sourceIndex: Int,
+                          to destinationPriority: Priority, at destinationIndex: Int) {
+        remove(task, from: sourcePriority, at: sourceIndex)
+        addTask(task, for: destinationPriority, at: destinationIndex)
     }
     
     func remove(_ task: Task, from priority: Priority, at index: Int) {

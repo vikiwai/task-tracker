@@ -13,7 +13,6 @@ class TrackerTableViewCell: UITableViewCell {
     @IBOutlet weak var checkmarkImage: UIImageView!
     @IBOutlet weak var headlineLabel: UILabel!
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -21,5 +20,4 @@ class TrackerTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-
 }
