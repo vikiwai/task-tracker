@@ -11,10 +11,13 @@ import UIKit
 class TrackerViewController: UITableViewController {
     
     var taskList: TaskList
-    var tableData: Array<Array<Task?>?>!
+
+    private func priorityForSectionIndex(_ index: Int) -> TaskList.Priority? {
+        return TaskList.Priority(rawValue: index)
+    }
     
     @IBAction func addNewTask(_ sender: Any) {
-        let newRowIndex = taskList.todo.count
+        let newRowIndex = taskList.todo(for: .absence).count
         let _ = taskList.newToDo()
         
         let indexPath = IndexPath(row: newRowIndex, section: 0)
@@ -25,12 +28,14 @@ class TrackerViewController: UITableViewController {
     
     @IBAction func deleteTasks(_ sender: Any) {
         if let selectedRows = tableView.indexPathsForSelectedRows {
-            var selectedTasks: Array<Task> = []
             for indexPath in selectedRows {
-                selectedTasks.append(taskList.todo[indexPath.row])
+                if let priority = priorityForSectionIndex(indexPath.section) {
+                    let todo = taskList.todo(for: priority)
+                    let rowToDelete = indexPath.row > todo.count - 1 ? todo.count - 1 : indexPath.row
+                    let task = todo[rowToDelete ]
+                    taskList.remove(task, from: priority, at: indexPath.row)
+                }
             }
-            
-            taskList.remove(tasks: selectedTasks)
             
             tableView.beginUpdates()
             tableView.deleteRows(at: selectedRows, with: .automatic)
@@ -51,23 +56,6 @@ class TrackerViewController: UITableViewController {
         navigationItem.leftBarButtonItem = editButtonItem
         
         tableView.allowsMultipleSelectionDuringEditing = true
-        
-        let sectionTitleCount = UILocalizedIndexedCollation().sectionTitles.count
-        var allSections = Array<Array<Task?>?>(repeatElement(nil, count: sectionTitleCount))
-        var sectionNumber = 0
-        let collation = UILocalizedIndexedCollation.current()
-        
-        for task in taskList.todo {
-            sectionNumber = collation.section(for: task, collationStringSelector: #selector(getter:Task.headline))
-            
-            if allSections[sectionNumber] == nil {
-                allSections[sectionNumber] = Array<Task?>()
-            }
-            
-            allSections[sectionNumber]!.append(task)
-        }
-        
-        tableData = allSections
     }
 
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -76,19 +64,24 @@ class TrackerViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableData[section] == nil ? 0 : tableData[section]!.count
+        if let priority = priorityForSectionIndex(section) {
+            return taskList.todo(for: priority).count
+        }
+        
+        return 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TrackerItem", for: indexPath)
-        //let task = taskList.todo[indexPath.row]
-        if let task = tableData[indexPath.section]?[indexPath.row] {
+
+        if let priority = priorityForSectionIndex(indexPath.section) {
+            let todo = taskList.todo(for: priority)
+            let task = todo[indexPath.row]
+            
             configureHeadlineText(for: cell, with: task)
             configureMarker(for: cell, with: task)
         }
-        
-        
-        
+    
         return cell
     }
     
@@ -98,24 +91,29 @@ class TrackerViewController: UITableViewController {
         }
         
         if let cell = tableView.cellForRow(at: indexPath) {
-            let task = taskList.todo[indexPath.row]
-            task.switchCheckStatus()
-            
-            configureMarker(for: cell, with: task)
-            tableView.deselectRow(at: indexPath, animated: true)
+            if let priority = priorityForSectionIndex(indexPath.section) {
+                let todo = taskList.todo(for: priority)
+                let task = todo[indexPath.row]
+                task.switchCheckStatus()
+                
+                configureMarker(for: cell, with: task)
+                tableView.deselectRow(at: indexPath, animated: true)
+            }
         }
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        taskList.todo.remove(at: indexPath.row)
-        
-        let indexPaths = [indexPath]
-        
-        tableView.deleteRows(at: indexPaths, with: .automatic)
+        if let priority = priorityForSectionIndex(indexPath.section) {
+            let task = taskList.todo(for: priority)[indexPath.row]
+            taskList.remove(task, from: priority, at: indexPath.row)
+            let indexPaths = [indexPath]
+            
+            tableView.deleteRows(at: indexPaths, with: .automatic)
+        }
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        taskList.move(task: taskList.todo[sourceIndexPath.row], to: destinationIndexPath.row)
+        //taskList.move(task: taskList.todo[sourceIndexPath.row], to: destinationIndexPath.row)
         tableView.reloadData()
     }
     
@@ -145,29 +143,46 @@ class TrackerViewController: UITableViewController {
             }
         } else if segue.identifier == "EditTaskSegue" {
             if let taskDetailViewController = segue.destination as? TaskDetailViewController {
-                if let cell = sender as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) {
-                    let task = taskList.todo[indexPath.row]
-                    taskDetailViewController.taskToEdit = task
-                    taskDetailViewController.delegate = self
+                if let cell = sender as? UITableViewCell,
+                    let indexPath = tableView.indexPath(for: cell),
+                    let priority = priorityForSectionIndex(indexPath.section) {
+                        let task = taskList.todo(for: priority)[indexPath.row]
+                        taskDetailViewController.taskToEdit = task
+                        taskDetailViewController.delegate = self
                 }
             }
         }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return tableData.count
+        return TaskList.Priority.allCases.count
     }
     
-    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        return UILocalizedIndexedCollation.current().sectionTitles
-    }
-    
-    override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
-        return UILocalizedIndexedCollation.current().section(forSectionIndexTitle: index)
-    }
+//    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+//        return UILocalizedIndexedCollation.current().sectionTitles
+//    }
+//
+//    override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+//        return UILocalizedIndexedCollation.current().section(forSectionIndexTitle: index)
+//    }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return UILocalizedIndexedCollation.current().sectionTitles[section]
+        var title: String? = nil
+        
+        if let priority = priorityForSectionIndex(section) {
+            switch priority {
+            case .high:
+                title = "High Priority"
+            case .medium:
+                title = "Medium Priority"
+            case .low:
+                title = "Low Priority"
+            case .absence:
+                title = "Without Priority"
+            }
+        }
+        
+        return title
     }
 }
 
@@ -176,18 +191,21 @@ extension TrackerViewController: TaskDetailViewControllerDelegate {
     func taskDetailViewController(_ controller: TaskDetailViewController, didFinishAdding task: Task) {
         navigationController?.popViewController(animated: true)
         
-        let rowIndex = taskList.todo.count - 1
-        let indexPath = IndexPath(row: rowIndex, section: 0)
+        let rowIndex = taskList.todo(for: .absence).count - 1
+        let indexPath = IndexPath(row: rowIndex, section: TaskList.Priority.absence.rawValue)
         let indexPaths = [indexPath]
         
         tableView.insertRows(at: indexPaths, with: .automatic)
     }
     
     func taskDetailViewController(_ controller: TaskDetailViewController, didFinishEditing task: Task) {
-        if let index = taskList.todo.firstIndex(of: task) {
-            let indexPath = IndexPath(row: index, section: 0)
-            if let cell = tableView.cellForRow(at: indexPath) {
-                configureHeadlineText(for: cell, with: task)
+        for priority in TaskList.Priority.allCases {
+            let currentList = taskList.todo(for: priority)
+            if let index = currentList.firstIndex(of: task) {
+                let indexPath = IndexPath(row: index, section: priority.rawValue)
+                if let cell = tableView.cellForRow(at: indexPath) {
+                    configureHeadlineText(for: cell, with: task)
+                }
             }
         }
         
