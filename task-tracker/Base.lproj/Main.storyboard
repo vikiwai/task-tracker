@@ -161,8 +161,7 @@
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="aOA-kK-t6b">
                                 <rect key="frame" x="16" y="328" width="288" height="146"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <color key="backgroundColor" red="0.97637790441513062" green="0.97653752565383911" blue="0.97634392976760864" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -201,7 +200,7 @@
                         <viewLayoutGuide key="safeArea" id="AIu-aB-v10"/>
                     </view>
                     <connections>
-                        <outlet property="taskData" destination="vZM-is-voK" id="lls-4b-lAJ"/>
+                        <outlet property="taskDate" destination="vZM-is-voK" id="l35-ux-ETa"/>
                         <outlet property="taskHeadline" destination="g1H-cV-M9k" id="7g1-u5-goa"/>
                         <outlet property="taskNotes" destination="aOA-kK-t6b" id="DA1-Ca-2yN"/>
                         <outlet property="taskPriority" destination="WmU-Ix-K5T" id="QMh-k1-FO6"/>
