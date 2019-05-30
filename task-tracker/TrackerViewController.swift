@@ -165,14 +165,6 @@ class TrackerViewController: UITableViewController {
         return TaskList.Priority.allCases.count
     }
     
-//    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-//        return UILocalizedIndexedCollation.current().sectionTitles
-//    }
-//
-//    override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
-//        return UILocalizedIndexedCollation.current().section(forSectionIndexTitle: index)
-//    }
-    
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         var title: String? = nil
         

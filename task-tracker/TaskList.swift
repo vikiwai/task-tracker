@@ -24,12 +24,12 @@ class TaskList {
         let task2 = Task()
         let task3 = Task()
         let task4 = Task()
-        
-        task1.headline = "Test1"
-        task2.headline = "Test2"
-        task3.headline = "Test3"
-        task4.headline = "Test4"
-        
+
+        task1.headline = "Test 1"
+        task2.headline = "Test 2"
+        task3.headline = "Test 3"
+        task4.headline = "Test 4"
+
         addTask(task1, for: .high)
         addTask(task2, for: .medium)
         addTask(task3, for: .low)
@@ -71,6 +71,21 @@ class TaskList {
             } else {
                 withoutPriorityTasks.insert(task, at: index)
             }
+        }
+        
+        saveTasks()
+    }
+    
+    func saveTasks() {
+        let userDefaults = UserDefaults.init(suiteName: "group.vikiwai.widget")!
+        
+        do {
+            userDefaults.set(try NSKeyedArchiver.archivedData(withRootObject: highPriorityTasks, requiringSecureCoding: false), forKey: "highPriorityTasks")
+            userDefaults.set(try NSKeyedArchiver.archivedData(withRootObject: mediumPriorityTasks, requiringSecureCoding: false), forKey: "mediumPriorityTasks")
+            userDefaults.set(try NSKeyedArchiver.archivedData(withRootObject: lowPriorityTasks, requiringSecureCoding: false), forKey: "lowPriorityTasks")
+            userDefaults.set(try NSKeyedArchiver.archivedData(withRootObject: withoutPriorityTasks, requiringSecureCoding: false), forKey: "withoutPriorityTasks")
+        } catch {
+            print(error)
         }
     }
     

@@ -7,10 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5B2675E1229B05A900CA564E /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2675E0229B05A900CA564E /* Task.swift */; };
 		5B2675E3229B188500CA564E /* TaskList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2675E2229B188400CA564E /* TaskList.swift */; };
 		5B2675E7229B45DC00CA564E /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2675E6229B45DC00CA564E /* TaskDetailViewController.swift */; };
 		5B2675E9229C75E100CA564E /* TrackerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2675E8229C75E100CA564E /* TrackerTableViewCell.swift */; };
+		5B2675F122A05CCC00CA564E /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B2675F022A05CCC00CA564E /* NotificationCenter.framework */; };
+		5B2675F422A05CCD00CA564E /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2675F322A05CCD00CA564E /* TodayViewController.swift */; };
+		5B2675F722A05CCD00CA564E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B2675F522A05CCD00CA564E /* MainInterface.storyboard */; };
+		5B2675FB22A05CCF00CA564E /* Task Tracker Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5B2675EE22A05CCC00CA564E /* Task Tracker Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		5B26760422A0776700CA564E /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2675E0229B05A900CA564E /* Task.swift */; };
+		5B26760622A0794100CA564E /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2675E0229B05A900CA564E /* Task.swift */; };
 		5B640A902299ABDB0036240F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B640A8F2299ABDB0036240F /* AppDelegate.swift */; };
 		5B640A922299ABDB0036240F /* TrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B640A912299ABDB0036240F /* TrackerViewController.swift */; };
 		5B640A952299ABDB0036240F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B640A932299ABDB0036240F /* Main.storyboard */; };
@@ -19,11 +24,42 @@
 		5B640A9D2299ABDD0036240F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B640A9B2299ABDD0036240F /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		5B2675F922A05CCF00CA564E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5B640A842299ABDB0036240F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5B2675ED22A05CCC00CA564E;
+			remoteInfo = "Task Tracker Widget";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5B2675FF22A05CCF00CA564E /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				5B2675FB22A05CCF00CA564E /* Task Tracker Widget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		5B2675E0229B05A900CA564E /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		5B2675E2229B188400CA564E /* TaskList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskList.swift; sourceTree = "<group>"; };
 		5B2675E6229B45DC00CA564E /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
 		5B2675E8229C75E100CA564E /* TrackerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerTableViewCell.swift; sourceTree = "<group>"; };
+		5B2675EE22A05CCC00CA564E /* Task Tracker Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Task Tracker Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B2675F022A05CCC00CA564E /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		5B2675F322A05CCD00CA564E /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		5B2675F622A05CCD00CA564E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		5B2675F822A05CCD00CA564E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5B26760022A061FB00CA564E /* task-tracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "task-tracker.entitlements"; sourceTree = "<group>"; };
+		5B26760122A0625700CA564E /* Task Tracker Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Task Tracker Widget.entitlements"; sourceTree = "<group>"; };
 		5B640A8C2299ABDB0036240F /* task-tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "task-tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B640A8F2299ABDB0036240F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B640A912299ABDB0036240F /* TrackerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerViewController.swift; sourceTree = "<group>"; };
@@ -35,6 +71,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		5B2675EB22A05CCC00CA564E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B2675F122A05CCC00CA564E /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5B640A892299ABDB0036240F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -45,10 +89,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B2675EF22A05CCC00CA564E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5B2675F022A05CCC00CA564E /* NotificationCenter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5B2675F222A05CCD00CA564E /* Task Tracker Widget */ = {
+			isa = PBXGroup;
+			children = (
+				5B26760122A0625700CA564E /* Task Tracker Widget.entitlements */,
+				5B2675F322A05CCD00CA564E /* TodayViewController.swift */,
+				5B2675F522A05CCD00CA564E /* MainInterface.storyboard */,
+				5B2675F822A05CCD00CA564E /* Info.plist */,
+			);
+			path = "Task Tracker Widget";
+			sourceTree = "<group>";
+		};
 		5B640A832299ABDB0036240F = {
 			isa = PBXGroup;
 			children = (
 				5B640A8E2299ABDB0036240F /* task-tracker */,
+				5B2675F222A05CCD00CA564E /* Task Tracker Widget */,
+				5B2675EF22A05CCC00CA564E /* Frameworks */,
 				5B640A8D2299ABDB0036240F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -57,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				5B640A8C2299ABDB0036240F /* task-tracker.app */,
+				5B2675EE22A05CCC00CA564E /* Task Tracker Widget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -64,6 +130,7 @@
 		5B640A8E2299ABDB0036240F /* task-tracker */ = {
 			isa = PBXGroup;
 			children = (
+				5B26760022A061FB00CA564E /* task-tracker.entitlements */,
 				5B640A8F2299ABDB0036240F /* AppDelegate.swift */,
 				5B640A912299ABDB0036240F /* TrackerViewController.swift */,
 				5B640A932299ABDB0036240F /* Main.storyboard */,
@@ -82,6 +149,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		5B2675ED22A05CCC00CA564E /* Task Tracker Widget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5B2675FC22A05CCF00CA564E /* Build configuration list for PBXNativeTarget "Task Tracker Widget" */;
+			buildPhases = (
+				5B2675EA22A05CCC00CA564E /* Sources */,
+				5B2675EB22A05CCC00CA564E /* Frameworks */,
+				5B2675EC22A05CCC00CA564E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Task Tracker Widget";
+			productName = "Task Tracker Widget";
+			productReference = 5B2675EE22A05CCC00CA564E /* Task Tracker Widget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		5B640A8B2299ABDB0036240F /* task-tracker */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5B640AA12299ABDD0036240F /* Build configuration list for PBXNativeTarget "task-tracker" */;
@@ -89,10 +173,12 @@
 				5B640A882299ABDB0036240F /* Sources */,
 				5B640A892299ABDB0036240F /* Frameworks */,
 				5B640A8A2299ABDB0036240F /* Resources */,
+				5B2675FF22A05CCF00CA564E /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				5B2675FA22A05CCF00CA564E /* PBXTargetDependency */,
 			);
 			name = "task-tracker";
 			productName = "task-tracker";
@@ -109,8 +195,21 @@
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Victoria Bunyaeva";
 				TargetAttributes = {
+					5B2675ED22A05CCC00CA564E = {
+						CreatedOnToolsVersion = 10.2;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 					5B640A8B2299ABDB0036240F = {
 						CreatedOnToolsVersion = 10.2;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -128,11 +227,20 @@
 			projectRoot = "";
 			targets = (
 				5B640A8B2299ABDB0036240F /* task-tracker */,
+				5B2675ED22A05CCC00CA564E /* Task Tracker Widget */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		5B2675EC22A05CCC00CA564E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B2675F722A05CCD00CA564E /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5B640A8A2299ABDB0036240F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -146,23 +254,48 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		5B2675EA22A05CCC00CA564E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B26760622A0794100CA564E /* Task.swift in Sources */,
+				5B2675F422A05CCD00CA564E /* TodayViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5B640A882299ABDB0036240F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				5B2675E7229B45DC00CA564E /* TaskDetailViewController.swift in Sources */,
 				5B2675E9229C75E100CA564E /* TrackerTableViewCell.swift in Sources */,
-				5B2675E1229B05A900CA564E /* Task.swift in Sources */,
 				5B2675E3229B188500CA564E /* TaskList.swift in Sources */,
 				5B640A982299ABDB0036240F /* task_tracker.xcdatamodeld in Sources */,
 				5B640A922299ABDB0036240F /* TrackerViewController.swift in Sources */,
+				5B26760422A0776700CA564E /* Task.swift in Sources */,
 				5B640A902299ABDB0036240F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		5B2675FA22A05CCF00CA564E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5B2675ED22A05CCC00CA564E /* Task Tracker Widget */;
+			targetProxy = 5B2675F922A05CCF00CA564E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		5B2675F522A05CCD00CA564E /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5B2675F622A05CCD00CA564E /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		5B640A932299ABDB0036240F /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -182,6 +315,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		5B2675FD22A05CCF00CA564E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Task Tracker Widget/Task Tracker Widget.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J7DZ7772CX;
+				INFOPLIST_FILE = "Task Tracker Widget/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "vikiwai.task-tracker.Task-Tracker-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5B2675FE22A05CCF00CA564E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Task Tracker Widget/Task Tracker Widget.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J7DZ7772CX;
+				INFOPLIST_FILE = "Task Tracker Widget/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "vikiwai.task-tracker.Task-Tracker-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		5B640A9F2299ABDD0036240F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -301,7 +474,9 @@
 		5B640AA22299ABDD0036240F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "task-tracker/task-tracker.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J7DZ7772CX;
 				INFOPLIST_FILE = "task-tracker/Info.plist";
@@ -319,7 +494,9 @@
 		5B640AA32299ABDD0036240F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "task-tracker/task-tracker.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J7DZ7772CX;
 				INFOPLIST_FILE = "task-tracker/Info.plist";
@@ -337,6 +514,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5B2675FC22A05CCF00CA564E /* Build configuration list for PBXNativeTarget "Task Tracker Widget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5B2675FD22A05CCF00CA564E /* Debug */,
+				5B2675FE22A05CCF00CA564E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		5B640A872299ABDB0036240F /* Build configuration list for PBXProject "task-tracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
