@@ -11,6 +11,9 @@ import Foundation
 class Task: NSObject {
     
     var headline: String = ""
+    var date: String = ""
+    var priority: String = ""
+    var notes: String = ""
     var checked: Bool = false
     
     func switchCheckStatus() {

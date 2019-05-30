@@ -64,14 +64,20 @@ class TaskDetailViewController: UIViewController, UIPickerViewDelegate, UIPicker
             
             self.present(alertController, animated: true, completion: nil)
         } else {
-            if let task = taskToEdit, let headline = taskHeadline.text {
+            if let task = taskToEdit, let headline = taskHeadline.text, let date = taskDate.text, let priority = taskPriority.text, let notes = taskNotes.text {
                 task.headline = headline
+                task.date = date
+                task.priority = priority
+                task.notes = notes
                 
                 delegate?.taskDetailViewController(self, didFinishEditing: task)
             } else {
                 if let task = taskList?.newToDo() {
-                    if let taskHeadlineField = taskHeadline.text {
+                    if let taskHeadlineField = taskHeadline.text, let taskDateField = taskDate.text, let taskPriorityField = taskPriority.text, let taskNotesField = taskNotes.text {
                         task.headline = taskHeadlineField
+                        task.date = taskDateField
+                        task.priority = taskPriorityField
+                        task.notes = taskNotesField
                     }
                     
                     task.checked = false
@@ -89,6 +95,9 @@ class TaskDetailViewController: UIViewController, UIPickerViewDelegate, UIPicker
         if let task = taskToEdit {
             title = "Edit Task"
             taskHeadline.text! = task.headline
+            taskDate.text! = task.date
+            taskPriority.text! = task.priority
+            taskNotes.text! = task.notes
         } else {
             title = "Add Task"
         }
