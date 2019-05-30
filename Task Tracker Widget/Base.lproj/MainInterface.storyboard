@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M4Y-Lb-cyx">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Today View Controller-->
+        <scene sceneID="cwh-vc-ff4">
+            <objects>
+                <viewController id="M4Y-Lb-cyx" customClass="TodayViewController" customModule="Task_Tracker_Widget" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" simulatedAppContext="notificationCenter" id="S3S-Oj-5AN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Headline" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tnW-29-6U0">
+                                <rect key="frame" x="16" y="0.0" width="230" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cCz-se-VgV">
+                                <rect key="frame" x="16" y="44" width="230" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hO4-0W-iAO">
+                                <rect key="frame" x="270" y="29" width="22" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="22" id="LGW-5X-Rxy"/>
+                                </constraints>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="hO4-0W-iAO" secondAttribute="trailing" constant="12" id="69c-EA-tIc"/>
+                            <constraint firstItem="tnW-29-6U0" firstAttribute="trailing" secondItem="cCz-se-VgV" secondAttribute="trailing" id="7lk-jY-Eis"/>
+                            <constraint firstAttribute="bottom" secondItem="cCz-se-VgV" secondAttribute="bottom" id="FGE-nE-Sbs"/>
+                            <constraint firstItem="hO4-0W-iAO" firstAttribute="centerY" secondItem="S3S-Oj-5AN" secondAttribute="centerY" id="NSW-Fl-TXU"/>
+                            <constraint firstItem="cCz-se-VgV" firstAttribute="top" secondItem="ssy-KU-ocm" secondAttribute="top" id="Ywv-DS-WQf"/>
+                            <constraint firstItem="tnW-29-6U0" firstAttribute="top" secondItem="S3S-Oj-5AN" secondAttribute="top" id="bM6-3E-s5k"/>
+                            <constraint firstItem="tnW-29-6U0" firstAttribute="leading" secondItem="cCz-se-VgV" secondAttribute="leading" id="f1U-7T-i3C"/>
+                            <constraint firstItem="cCz-se-VgV" firstAttribute="top" secondItem="tnW-29-6U0" secondAttribute="bottom" constant="3" id="kGA-f1-3Xw"/>
+                            <constraint firstItem="hO4-0W-iAO" firstAttribute="leading" secondItem="tnW-29-6U0" secondAttribute="trailing" constant="24" id="t3S-dy-Doq"/>
+                            <constraint firstItem="tnW-29-6U0" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" id="yL7-l1-BYq"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ssy-KU-ocm"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="80"/>
+                    <connections>
+                        <outlet property="openTask" destination="hO4-0W-iAO" id="Yhm-GE-aGa"/>
+                        <outlet property="widgetDate" destination="cCz-se-VgV" id="p0w-gL-SeZ"/>
+                        <outlet property="widgetHeadline" destination="tnW-29-6U0" id="5Vp-ag-X3R"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="97.098214285714278"/>
+        </scene>
+    </scenes>
+</document>
