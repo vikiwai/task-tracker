@@ -34,6 +34,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             arrayOfAllTasks += lowPriorityTasks!
             arrayOfAllTasks += withoutPriorityTasks!
             
+            print("Hey hey heeeeeey", arrayOfAllTasks.count)
+
             var arrayOfUncheckedTasks : Array<Task> = []
             
             for task in arrayOfAllTasks {

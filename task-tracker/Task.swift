@@ -8,6 +8,7 @@
 
 import Foundation
 
+@objc(Task)
 class Task: NSObject, NSCoding {
     
     var headline: String = ""
@@ -29,7 +30,14 @@ class Task: NSObject, NSCoding {
         self.date = aDecoder.decodeObject(forKey: "date") as! String
         self.priority = aDecoder.decodeObject(forKey: "priority") as! String
         self.notes = aDecoder.decodeObject(forKey: "notes") as! String
-        self.checked = aDecoder.decodeObject(forKey: "checked") as! Bool
+
+        let checked = aDecoder.decodeObject(forKey: "checked") as? Bool
+
+        if checked != nil {
+            self.checked = checked!
+        } else {
+            self.checked = false
+        }
     }
     
     func encode(with: NSCoder) {
